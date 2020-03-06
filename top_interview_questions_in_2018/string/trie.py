@@ -39,10 +39,9 @@ class Trie:
         node = self.root
         for char in word:
             if char not in node:
-                node[char] = {}
-            node = node[char]
-        if '*' not in node:
-            node['*'] = '*'
+                node = node.setdefault(char, {})
+        if '#' not in node:
+            node['#'] = 1
 
     def search_prefix(self, word):
         """
@@ -61,7 +60,7 @@ class Trie:
         Returns if the word is in the trie.
         """
         node = self.search_prefix(word)
-        return node is not None and '*' in node
+        return node is not None and '#' in node and node['#'] == 1
 
     def start_with(self, prefix):
         """
