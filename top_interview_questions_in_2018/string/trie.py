@@ -22,42 +22,6 @@ All inputs are guaranteed to be non-empty strings.
 """
 
 
-class TrieNode:
-    """
-    Trie Node.
-    """
-    def __init__(self):
-        """
-        Initialize node.
-        """
-        self.is_end = False
-        self.nodes = [None for _ in range(26)]
-
-    def contains_key(self, char):
-        """
-        Returns if char in node.
-        """
-        return self.nodes[ord(char) - ord('a')] is not None
-
-    def get(self, char):
-        """
-        Return node by char
-        """
-        return self.nodes[ord(char) - ord('a')]
-
-    def put(self, char, node):
-        """
-        Insert new node into nodes.
-        """
-        self.nodes[ord(char) - ord('a')] = node
-
-    def set_end(self):
-        """
-        Set is_end True.
-        """
-        self.is_end = True
-
-
 class Trie:
     """
     Trie.
@@ -66,7 +30,7 @@ class Trie:
         """
         Initialize your data structure here.
         """
-        self.root = TrieNode()
+        self.root = {}
 
     def insert(self, word):
         """
@@ -74,10 +38,11 @@ class Trie:
         """
         node = self.root
         for char in word:
-            if not node.contains_key(char):
-                node.put(char, TrieNode())
-            node = node.get(char)
-        node.set_end()
+            if char not in node:
+                node[char] = {}
+            node = node[char]
+        if '*' not in node:
+            node['*'] = '*'
 
     def search_prefix(self, word):
         """
@@ -85,8 +50,8 @@ class Trie:
         """
         node = self.root
         for char in word:
-            if node.contains_key(char):
-                node = node.get(char)
+            if char in node:
+                node = node[char]
             else:
                 return None
         return node
@@ -96,7 +61,7 @@ class Trie:
         Returns if the word is in the trie.
         """
         node = self.search_prefix(word)
-        return node is not None and node.is_end is True
+        return node is not None and '*' in node
 
     def start_with(self, prefix):
         """
