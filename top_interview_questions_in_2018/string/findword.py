@@ -24,11 +24,18 @@ def find_words(board, words):
                 and board[_i][_j] in node\
                 and (_i, _j) not in visited:
                 dfs(_i, _j, node[board[_i][_j]], pre + board[_i][_j],
-                    visited.append((_i, _j)))
+                    visited | {(_i, _j)})
 
     for i in range(row):
         for j in range(col):
             if board[i][j] in trie:
-                dfs(i, j, trie[board[i][j]], [])
+                dfs(i, j, trie[board[i][j]], board[i][j], {(i, j)})
 
     return list(res)
+
+
+board = [["o", "a", "a", "n"], ["e", "t", "a", "e"], ["i", "h", "k", "r"],
+         ["i", "f", "l", "v"]]
+words = ["oath", "pea", "eat", "rain"]
+
+print(find_words(board, words))
