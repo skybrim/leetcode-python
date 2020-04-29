@@ -25,24 +25,18 @@ def reverse_list(head):
     :param head: ListNode
     :return: ListNode
     """
-    if not head:
-        return None
-
-    def reverse(pre, next_node):
-        """
-        :param pre: ListNode
-        :param next_node:  ListNode
-        :return: ListNode
-        """
-        if not next_node:
-            return pre
-        temp = next_node.next
-        next_node.next = pre
-        return reverse(next_node, temp)
-
-    head_next = head.next
-    head.next = None
-    return reverse(head, head_next)
+    if not head.next:
+        return head
+    pre = head
+    cur = head.next
+    pre.next = None
+    while cur and cur.next:
+        temp = pre
+        pre = cur
+        pre.next = temp
+        cur = cur.next
+    cur.next = pre
+    return cur
 
 
 if __name__ == '__main__':
