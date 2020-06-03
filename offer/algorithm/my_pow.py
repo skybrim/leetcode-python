@@ -6,6 +6,7 @@
 @author: wiley
 @datetime: 2020/5/19 10:39 AM
 
+数值的整数次方
 实现 pow(x, n)，即计算 x 的 n 次幂函数
 """
 

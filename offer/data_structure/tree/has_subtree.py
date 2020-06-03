@@ -25,14 +25,14 @@ def is_sub_structure(a, b):
     @return: bool
     """
 
-    def help(r1, r2):
+    def help_func(r1, r2):
         if not r2:
             return True
         if not r1:
             return False
         if r1.val != r2.val:
             return False
-        return help(r1.left, r2.left) and help(r1.right, r2.right)
+        return help_func(r1.left, r2.left) and help_func(r1.right, r2.right)
 
     result = False
 
@@ -40,7 +40,7 @@ def is_sub_structure(a, b):
         return result
 
     if a.val == b.val:
-        result = help(a, b)
+        result = help_func(a, b)
 
     if not result:
         result = is_sub_structure(a.left, b)
