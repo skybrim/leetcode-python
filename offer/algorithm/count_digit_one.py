@@ -18,7 +18,7 @@ def count_digit_one(n):
     high, cur, low = n // 10, n % 10, 0
     digit = 1
     result = 0
-    while high !=0 or cur != 0:
+    while high != 0 or cur != 0:
         if cur == 0:
             result += high * digit
         elif cur == 1:
