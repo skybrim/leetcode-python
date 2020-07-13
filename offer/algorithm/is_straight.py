@@ -30,6 +30,18 @@ def is_straight(nums):
     return max_num - min_num < 5
 
 
+def is_straight_ii(nums):
+    joker = 0
+    nums.sort()
+    for i in range(4):
+        if nums[i] == 0:
+            joker += 1
+            continue
+        if nums[i] == nums[i + 1]:
+            return False
+    return nums[4] - nums[joker] < 5
+
+
 if __name__ == '__main__':
     result = is_straight([1, 2, 3, 4, 5])
     print(result)
