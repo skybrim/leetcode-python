@@ -24,7 +24,7 @@ def find(matrix, rows, columns, number):
     if matrix and rows > 0 and columns > 0:
         cur_row = 0
         cur_column = columns - 1
-        while cur_row < rows and cur_column > 0:
+        while cur_row < rows and cur_column >= 0:
             if matrix[cur_row][cur_column] == number:
                 found = True
                 break
