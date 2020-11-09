@@ -42,7 +42,7 @@
 
 
 def sort_by_bits(arr):
-    def cout_one(num):
+    def count_one(num):
         res = 0
         while num != 0:
             res += num & 1
@@ -50,7 +50,7 @@ def sort_by_bits(arr):
         return res
 
     res = arr[:]
-    res.sort(key=lambda x: (cout_one(x), x))
+    res.sort(key=lambda x: (count_one(x), x))
     return res
 
 
